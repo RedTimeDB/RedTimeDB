@@ -2,7 +2,7 @@
  * @Author: gitsrc
  * @Date: 2022-04-02 14:21:40
  * @LastEditors: gitsrc
- * @LastEditTime: 2022-04-02 21:16:21
+ * @LastEditTime: 2022-04-02 21:23:23
  * @FilePath: /RedTimeDB/README.md
 -->
 
@@ -30,17 +30,15 @@ The next-generation time series database builds ultra-high-speed write and query
 <p align="center">
 <img 
     src="./imgs/test_metrics.jpg" 
-    border="0" alt="test_metrics" />
+    border="0" alt="test_metrics" width="80%" />
 </p>
 
 ## rows throughput
 <p align="center">
 <img 
     src="./imgs/test_rows.jpg" 
-    border="0" alt="test_rows" />
+    border="0" alt="test_rows" width="80%" />
 </p>
-
-
 # Command support
 ## TS.ADD
 ### Instruction description
