@@ -2,7 +2,7 @@
  * @Author: gitsrc
  * @Date: 2022-04-02 11:42:01
  * @LastEditors: gitsrc
- * @LastEditTime: 2022-04-02 12:16:13
+ * @LastEditTime: 2022-04-02 14:08:51
  * @FilePath: /RedTimeDB/app/rtserver/common.go
  */
 
@@ -13,12 +13,12 @@ import (
 	"fmt"
 	"log"
 	"os"
-	"runtime"
 	"time"
+
+	_ "go.uber.org/automaxprocs"
 )
 
 func init() {
-	runtime.GOMAXPROCS(runtime.NumCPU() * 2)
 	showBanner()
 	log.SetFlags(log.Lshortfile | log.LstdFlags)
 }
