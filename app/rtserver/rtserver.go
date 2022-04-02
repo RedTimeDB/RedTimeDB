@@ -2,7 +2,7 @@
  * @Author: gitsrc
  * @Date: 2022-04-02 11:53:31
  * @LastEditors: gitsrc
- * @LastEditTime: 2022-04-02 13:35:20
+ * @LastEditTime: 2022-04-02 13:51:55
  * @FilePath: /RedTimeDB/app/rtserver/rtserver.go
  */
 
@@ -100,4 +100,8 @@ func GetNewRTServer(conFileURI string) (rtserver RTServer, err error) {
 	)
 
 	return
+}
+
+func (rts *RTServer) ListendAndServe(addr string, options redhub.Options) {
+
 }
