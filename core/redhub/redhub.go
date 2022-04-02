@@ -83,8 +83,8 @@ func NewRedHub(
 	onOpened func(c *Conn) (out []byte, action Action),
 	onClosed func(c *Conn, err error) (action Action),
 	handler func(cmd resp.Command, out []byte) ([]byte, Action),
-) *redHub {
-	return &redHub{
+) *RedHub {
+	return &RedHub{
 		redHubBufMap: make(map[gnet.Conn]*connBuffer),
 		connSync:     sync.RWMutex{},
 		onOpened:     onOpened,
@@ -93,7 +93,7 @@ func NewRedHub(
 	}
 }
 
-type redHub struct {
+type RedHub struct {
 	*gnet.EventServer
 	onOpened     func(c *Conn) (out []byte, action Action)
 	onClosed     func(c *Conn, err error) (action Action)
@@ -107,7 +107,7 @@ type connBuffer struct {
 	command []resp.Command
 }
 
-func (rs *redHub) OnOpened(c gnet.Conn) (out []byte, action gnet.Action) {
+func (rs *RedHub) OnOpened(c gnet.Conn) (out []byte, action gnet.Action) {
 	rs.connSync.Lock()
 	defer rs.connSync.Unlock()
 	rs.redHubBufMap[c] = new(connBuffer)
@@ -115,7 +115,7 @@ func (rs *redHub) OnOpened(c gnet.Conn) (out []byte, action gnet.Action) {
 	return
 }
 
-func (rs *redHub) OnClosed(c gnet.Conn, err error) (action gnet.Action) {
+func (rs *RedHub) OnClosed(c gnet.Conn, err error) (action gnet.Action) {
 	rs.connSync.Lock()
 	defer rs.connSync.Unlock()
 	delete(rs.redHubBufMap, c)
@@ -123,7 +123,7 @@ func (rs *redHub) OnClosed(c gnet.Conn, err error) (action gnet.Action) {
 	return
 }
 
-func (rs *redHub) React(frame []byte, c gnet.Conn) (out []byte, action gnet.Action) {
+func (rs *RedHub) React(frame []byte, c gnet.Conn) (out []byte, action gnet.Action) {
 	rs.connSync.RLock()
 	defer rs.connSync.RUnlock()
 	cb, ok := rs.redHubBufMap[c]
@@ -160,7 +160,7 @@ func (rs *redHub) React(frame []byte, c gnet.Conn) (out []byte, action gnet.Acti
 	return
 }
 
-func ListendAndServe(addr string, options Options, rh *redHub) error {
+func ListendAndServe(addr string, options Options, rh *RedHub) error {
 	serveOptions := gnet.Options{
 		Multicore:        options.Multicore,
 		LockOSThread:     options.LockOSThread,
