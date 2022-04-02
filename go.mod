@@ -5,6 +5,7 @@ go 1.18
 require (
 	github.com/panjf2000/gnet v1.6.4
 	github.com/stretchr/testify v1.7.0
+	gopkg.in/yaml.v2 v2.2.8
 )
 
 require (
