@@ -2,7 +2,7 @@
  * @Author: gitsrc
  * @Date: 2022-04-02 14:21:40
  * @LastEditors: gitsrc
- * @LastEditTime: 2022-04-02 21:23:23
+ * @LastEditTime: 2022-04-02 21:52:34
  * @FilePath: /RedTimeDB/README.md
 -->
 
@@ -18,7 +18,7 @@
 ![build](https://github.com/RedTimeDB/RedTimeDB/actions/workflows/build.yml/badge.svg) 
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FRedTimeDB%2FRedTimeDB.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FRedTimeDB%2FRedTimeDB?ref=badge_shield)
 
-The next-generation time series database builds ultra-high-speed write and query performance based on the memory model, and has remote persistent write support. Welcome to experience a faster time series database.
+The next-generation time series database, builds ultra-high-speed write and query performance based on the memory model, and has remote persistent write support,Welcome to experience a faster time series database.
 
 1. Ultra-high data write performance.
 2. Excellent remote data persistence support.
