@@ -2,7 +2,7 @@
  * @Author: gitsrc
  * @Date: 2022-04-02 14:21:40
  * @LastEditors: gitsrc
- * @LastEditTime: 2022-04-02 21:52:34
+ * @LastEditTime: 2022-04-02 21:54:27
  * @FilePath: /RedTimeDB/README.md
 -->
 
@@ -57,12 +57,6 @@ The next-generation time series database, builds ultra-high-speed write and quer
 
 # License
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FRedTimeDB%2FRedTimeDB.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FRedTimeDB%2FRedTimeDB?ref=badge_large)
-
-# Thanks 
-### I stood on the shoulders of giants and did only simple things. Thank you for your attention.
-
-* https://github.com/nakabonne/tstorage
-* https://github.com/panjf2000/gnet
 
 # Disclaimers
 When you use this software, you have agreed and stated that the author, maintainer and contributor of this software are not responsible for any risks, costs or problems you encounter. If you find a software defect or BUG, ​​please submit a patch to help improve it!
