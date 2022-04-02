@@ -24,3 +24,5 @@ jobs:
         cd app/rtserver
         pwd
         make
+        make win64
+        make macos_x86_64
