@@ -2,13 +2,13 @@
  * @Author: gitsrc
  * @Date: 2022-04-02 14:21:40
  * @LastEditors: gitsrc
- * @LastEditTime: 2022-04-02 17:29:28
+ * @LastEditTime: 2022-04-02 17:34:51
  * @FilePath: /RedTimeDB/README.md
 -->
 
 <p align="center">
 <img 
-    src="./imgs/logo.png" 
+    src="./imgs/logo.png" width="80%" height="80%"
     border="0" alt="RedTimeDB" />
 </p>
 
