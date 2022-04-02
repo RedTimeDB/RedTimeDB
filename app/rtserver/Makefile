@@ -24,6 +24,18 @@ all:
 	fi
 	go build $(CFLAGS) -o $(PROG) $(SRCS)
 
+win64:
+	if [ ! -d "./bin/" ]; then \
+	mkdir bin; \
+	fi
+	CGO_ENABLED=0 GOOS=windows  GOARCH=amd64 go build $(CFLAGS) -o $(PROG)_win64.exe $(SRCS)
+
+macos_x86_64:
+	if [ ! -d "./bin/" ]; then \
+	mkdir bin; \
+	fi
+	CGO_ENABLED=0 GOOS=darwin  GOARCH=amd64  go build $(CFLAGS) -o $(PROG)_macos_x86_64 $(SRCS)
+
 # Compile the race version
 race:
 	if [ ! -d "./bin/" ]; then \
