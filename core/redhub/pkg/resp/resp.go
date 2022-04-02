@@ -279,6 +279,7 @@ func readTile38Command(packet []byte, argsbuf [][]byte) (
 	}
 	return false, args[:0], Tile38, packet, nil
 }
+
 func readTelnetCommand(packet []byte, argsbuf [][]byte) (
 	complete bool, args [][]byte, kind Kind, leftover []byte, err error,
 ) {
@@ -416,6 +417,7 @@ func AppendError(b []byte, s string) []byte {
 func AppendOK(b []byte) []byte {
 	return append(b, '+', 'O', 'K', '\r', '\n')
 }
+
 func stripNewlines(s string) string {
 	for i := 0; i < len(s); i++ {
 		if s[i] == '\r' || s[i] == '\n' {
@@ -480,6 +482,10 @@ type SimpleString string
 // from an *Any call.
 type SimpleInt int
 
+// SimpleInt64 is for representing a non-bulk representation of a int64
+// from an *Any call.
+type SimpleInt64 int64
+
 // Marshaler is the interface implemented by types that
 // can marshal themselves into a Redis response type from an *Any call.
 // The return value is not check for validity.
@@ -505,6 +511,8 @@ func AppendAny(b []byte, v interface{}) []byte {
 	case SimpleString:
 		b = AppendString(b, string(v))
 	case SimpleInt:
+		b = AppendInt(b, int64(v))
+	case SimpleInt64:
 		b = AppendInt(b, int64(v))
 	case nil:
 		b = AppendNull(b)

@@ -4,6 +4,11 @@
 net:
   #listen_uri: unix:/tmp/redis.sock
   listen_uri: tcp://127.0.0.1:6380
+  multicore: true
+  reuse_port: true
+  lock_os_thread: false
+  read_buffer_cap: 0
+
 
 #RTServer memory cache related parameters
 cache:
@@ -20,3 +25,6 @@ api:
 debug:
   enable: false
   pprof_uri: "127.0.0.1:6060"
+
+memory_db:
+  partitionDuration:
