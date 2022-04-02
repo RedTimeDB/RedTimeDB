@@ -2,7 +2,7 @@
  * @Author: gitsrc
  * @Date: 2022-04-02 14:21:40
  * @LastEditors: gitsrc
- * @LastEditTime: 2022-04-02 17:28:16
+ * @LastEditTime: 2022-04-02 17:29:28
  * @FilePath: /RedTimeDB/README.md
 -->
 
@@ -20,7 +20,7 @@ The next-generation time series database builds ultra-high-speed write and query
 3. Support cluster horizontal expansion.
 4. Support community popular chart system.
 5. Support multiple protocols for write access: MQTT, HTTP, RESP.
-# Model experiment effect
+# Model test
 ## metrics throughput
 <p align="center">
 <img 
