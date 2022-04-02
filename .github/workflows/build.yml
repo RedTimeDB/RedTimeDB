@@ -20,7 +20,7 @@ jobs:
 
     - name: Build
       run: |
-      pwd
-      cd RedTimeDB/app/rtserver
-      pwd
-      make
+        pwd
+        cd RedTimeDB/app/rtserver
+        pwd
+        make
