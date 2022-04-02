@@ -3,19 +3,19 @@ PROG=bin/rtserver
 
 SRCS=./
 
-# 安装目录
+# installation manual
 INSTALL_PREFIX=/usr/local
 
-# 配置安装的目录
+# Configure the installation directory
 CONF_INSTALL_PREFIX=/usr/local/rtserver
 
 # git commit hash
 COMMIT_HASH=$(shell git rev-parse --short HEAD || echo "GitNotFound")
 
-# 编译日期
+# compile date
 BUILD_DATE=$(shell date '+%Y-%m-%d %H:%M:%S')
 
-# 编译条件
+# compile condition
 CFLAGS = -ldflags "-s -w -X \"main.BuildVersion=${COMMIT_HASH}\" -X \"main.BuildDate=$(BUILD_DATE)\""
 
 all:
@@ -24,14 +24,14 @@ all:
 	fi
 	go build $(CFLAGS) -o $(PROG) $(SRCS)
 
-# 编译race版本
+# Compile the race version
 race:
 	if [ ! -d "./bin/" ]; then \
     	mkdir bin; \
     	fi
 	go build $(CFLAGS) -race -o $(PROG) $(SRCS)
 
-# release 版本
+# release version
 RELEASE_DATE = $(shell date '+%Y%m%d%H%M%S')
 RELEASE_VERSION = $(shell git rev-parse --short HEAD || echo "GitNotFound")
 RELEASE_DIR=release_bin
@@ -55,6 +55,6 @@ install:
 clean:
 	rm -rf ./bin
 	
-	rm -rf $(INSTALL_PREFIX)/bin/RedisHub
+	rm -rf $(INSTALL_PREFIX)/bin/rtserver
 	
 	rm -rf $(CONF_INSTALL_PREFIX)
