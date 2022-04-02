@@ -13,8 +13,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/RedTimeDB/RedTimeDB/core/tstorage/internal/cgroup"
-	"github.com/RedTimeDB/RedTimeDB/core/tstorage/internal/timerpool"
+	"github.com/RedTimeDB/RedTimeDB/core/storage/internal/cgroup"
+	"github.com/RedTimeDB/RedTimeDB/core/storage/internal/timerpool"
 )
 
 var (

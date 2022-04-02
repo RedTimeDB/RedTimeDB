@@ -10,7 +10,7 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/RedTimeDB/RedTimeDB/core/tstorage/internal/syscall"
+	"github.com/RedTimeDB/RedTimeDB/core/storage/internal/syscall"
 )
 
 const (

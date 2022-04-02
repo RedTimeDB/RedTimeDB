@@ -7,7 +7,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/RedTimeDB/RedTimeDB/core/tstorage"
+	tstorage "github.com/RedTimeDB/RedTimeDB/core/storage"
 )
 
 func ExampleNewStorage_withDataPath() {

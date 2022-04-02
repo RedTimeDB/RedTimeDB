@@ -3,7 +3,7 @@ package tstorage
 import (
 	"sort"
 
-	"github.com/RedTimeDB/RedTimeDB/core/tstorage/internal/encoding"
+	"github.com/RedTimeDB/RedTimeDB/core/storage/internal/encoding"
 )
 
 const (
