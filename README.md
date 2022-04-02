@@ -2,7 +2,7 @@
  * @Author: gitsrc
  * @Date: 2022-04-02 14:21:40
  * @LastEditors: gitsrc
- * @LastEditTime: 2022-04-02 17:34:51
+ * @LastEditTime: 2022-04-02 21:07:24
  * @FilePath: /RedTimeDB/README.md
 -->
 
@@ -12,7 +12,11 @@
     border="0" alt="RedTimeDB" />
 </p>
 
+
 # RedTimeDB
+
+![build](https://github.com/RedTimeDB/RedTimeDB/actions/workflows/build.yml/badge.svg)
+
 The next-generation time series database builds ultra-high-speed write and query performance based on the memory model, and has remote persistent write support. Welcome to experience a faster time series database.
 
 1. Ultra-high data write performance.
