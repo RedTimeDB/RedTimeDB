@@ -2,7 +2,7 @@
  * @Author: gitsrc
  * @Date: 2022-04-02 14:21:40
  * @LastEditors: gitsrc
- * @LastEditTime: 2022-04-02 21:07:24
+ * @LastEditTime: 2022-04-02 21:16:21
  * @FilePath: /RedTimeDB/README.md
 -->
 
@@ -15,7 +15,8 @@
 
 # RedTimeDB
 
-![build](https://github.com/RedTimeDB/RedTimeDB/actions/workflows/build.yml/badge.svg)
+![build](https://github.com/RedTimeDB/RedTimeDB/actions/workflows/build.yml/badge.svg) 
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FRedTimeDB%2FRedTimeDB.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FRedTimeDB%2FRedTimeDB?ref=badge_shield)
 
 The next-generation time series database builds ultra-high-speed write and query performance based on the memory model, and has remote persistent write support. Welcome to experience a faster time series database.
 
@@ -55,8 +56,10 @@ The next-generation time series database builds ultra-high-speed write and query
 ### Instruction description
 ### Example of use
 
-# Thanks 
+# License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FRedTimeDB%2FRedTimeDB.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FRedTimeDB%2FRedTimeDB?ref=badge_large)
 
+# Thanks 
 ### I stood on the shoulders of giants and did only simple things. Thank you for your attention.
 
 * https://github.com/nakabonne/tstorage
