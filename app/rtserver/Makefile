@@ -24,6 +24,12 @@ all:
 	fi
 	go build $(CFLAGS) -o $(PROG) $(SRCS)
 
+linux_x86_64:
+	if [ ! -d "./bin/" ]; then \
+	mkdir bin; \
+	fi
+	CGO_ENABLED=0  GOOS=linux  GOARCH=amd64 go build $(CFLAGS) -o $(PROG)_linux_x86_64 $(SRCS)
+
 win64:
 	if [ ! -d "./bin/" ]; then \
 	mkdir bin; \
