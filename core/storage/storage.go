@@ -307,6 +307,7 @@ type storage struct {
 	// wg must be incremented to guarantee all writes are done gracefully.
 	wg sync.WaitGroup
 
+	//TODO: Add remote write data structure
 	doneCh chan struct{}
 }
 
