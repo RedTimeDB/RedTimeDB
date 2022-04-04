@@ -29,6 +29,9 @@ var (
 	//The current version of the worker mechanism cannot exert the performance of golang concurrency
 	//and it will also increase the problem of too many signals.
 	//You can form a coroutine pool with the help of the ants project.
+	//当前版本的worker机制无法发挥golang并发的性能
+	//而且还会增加信号过多的问题。
+	//可以在ants：https://github.com/panjf2000/ants 项目的帮助下形成协程池。
 	defaultWorkersLimit = cgroup.AvailableCPUs()
 
 	partitionDirRegex = regexp.MustCompile(`^p-.+`)
@@ -198,14 +201,20 @@ func NewStorage(opts ...Option) (Storage, error) {
 		logger:             &nopLogger{},
 		doneCh:             make(chan struct{}, 0),
 	}
+
+	//Inject and execute the storage parameter function
 	for _, opt := range opts {
 		opt(s)
 	}
 
+	//If in memory mode, create a brand new memory Partition and return function.
 	if s.inMemoryMode() {
 		s.newPartition(nil, false)
 		return s, nil
 	}
+
+	//TODO：增加内存数据块远程写入与清理单元
+	//TODO：Added memory data block remote write and cleanup unit
 
 	if err := os.MkdirAll(s.dataPath, fs.ModePerm); err != nil {
 		return nil, fmt.Errorf("failed to make data directory %s: %w", s.dataPath, err)
