@@ -364,6 +364,11 @@ func (s *storage) InsertRows(rows []Row) error {
 	}
 }
 
+//TODO: add InsertMemRows functions
+func (s *storage) InsertMemRows(rows []Row) error {
+	return nil
+}
+
 // ensureActiveHead ensures the head of partitionList is an active partition.
 // If none, it creates a new one.
 func (s *storage) ensureActiveHead() error {
