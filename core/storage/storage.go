@@ -307,6 +307,7 @@ type storage struct {
 	// wg must be incremented to guarantee all writes are done gracefully.
 	wg sync.WaitGroup
 
+	//TODO: Add remote write data structure
 	doneCh chan struct{}
 }
 
@@ -361,6 +362,11 @@ func (s *storage) InsertRows(rows []Row) error {
 		return fmt.Errorf("failed to write a data point in %s, since it is overloaded with %d concurrent writers",
 			s.writeTimeout, defaultWorkersLimit)
 	}
+}
+
+//TODO: add InsertMemRows functions
+func (s *storage) InsertMemRows(rows []Row) error {
+	return nil
 }
 
 // ensureActiveHead ensures the head of partitionList is an active partition.
