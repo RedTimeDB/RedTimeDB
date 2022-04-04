@@ -18,11 +18,20 @@ import (
 )
 
 var (
+	//ErrNoDataPoints means no data point error
 	ErrNoDataPoints = errors.New("no data points found")
 
 	// Limit the concurrency for data ingestion to GOMAXPROCS, since this operation
 	// is CPU bound, so there is no sense in running more than GOMAXPROCS concurrent
 	// goroutines on data ingestion path.
+	//
+	//TODO: Coroutine pool optimization
+	//The current version of the worker mechanism cannot exert the performance of golang concurrency
+	//and it will also increase the problem of too many signals.
+	//You can form a coroutine pool with the help of the ants project.
+	//当前版本的worker机制无法发挥golang并发的性能
+	//而且还会增加信号过多的问题。
+	//可以在ants：https://github.com/panjf2000/ants 项目的帮助下形成协程池。
 	defaultWorkersLimit = cgroup.AvailableCPUs()
 
 	partitionDirRegex = regexp.MustCompile(`^p-.+`)
@@ -32,10 +41,14 @@ var (
 type TimestampPrecision string
 
 const (
-	Nanoseconds  TimestampPrecision = "ns"
+	//Nanoseconds stands for nanosecond precision
+	Nanoseconds TimestampPrecision = "ns"
+	//Microseconds stands for microsecond precision
 	Microseconds TimestampPrecision = "us"
+	//Milliseconds stands for millisecond precision
 	Milliseconds TimestampPrecision = "ms"
-	Seconds      TimestampPrecision = "s"
+	//Seconds stands for second precision
+	Seconds TimestampPrecision = "s"
 
 	defaultPartitionDuration  = 1 * time.Hour
 	defaultRetention          = 336 * time.Hour
@@ -52,10 +65,12 @@ const (
 // Storage provides goroutine safe capabilities of insertion into and retrieval from the time-series storage.
 type Storage interface {
 	Reader
+
 	// InsertRows ingests the given rows to the time-series storage.
 	// If the timestamp is empty, it uses the machine's local timestamp in UTC.
 	// The precision of timestamps is nanoseconds by default. It can be changed using WithTimestampPrecision.
 	InsertRows(rows []Row) error
+
 	// Close gracefully shutdowns by flushing any unwritten data to the underlying disk partition.
 	Close() error
 }
@@ -73,8 +88,10 @@ type Row struct {
 	// The unique name of metric.
 	// This field must be set.
 	Metric string
+
 	// An optional key-value properties to further detailed identification.
 	Labels []Label
+
 	// This field must be set.
 	DataPoint
 }
@@ -83,6 +100,7 @@ type Row struct {
 type DataPoint struct {
 	// The actual value. This field must be set.
 	Value float64
+
 	// Unix timestamp.
 	Timestamp int64
 }
@@ -173,7 +191,7 @@ func WithWALBufferedSize(size int) Option {
 func NewStorage(opts ...Option) (Storage, error) {
 	s := &storage{
 		partitionList:      newPartitionList(),
-		workersLimitCh:     make(chan struct{}, defaultWorkersLimit),
+		workersLimitCh:     make(chan struct{}, defaultWorkersLimit), //Coroutine pool optimization
 		partitionDuration:  defaultPartitionDuration,
 		retention:          defaultRetention,
 		timestampPrecision: defaultTimestampPrecision,
@@ -183,14 +201,20 @@ func NewStorage(opts ...Option) (Storage, error) {
 		logger:             &nopLogger{},
 		doneCh:             make(chan struct{}, 0),
 	}
+
+	//Inject and execute the storage parameter function
 	for _, opt := range opts {
 		opt(s)
 	}
 
+	//If in memory mode, create a brand new memory Partition and return function.
 	if s.inMemoryMode() {
 		s.newPartition(nil, false)
 		return s, nil
 	}
+
+	//TODO：增加内存数据块远程写入与清理单元
+	//TODO：Added memory data block remote write and cleanup unit
 
 	if err := os.MkdirAll(s.dataPath, fs.ModePerm); err != nil {
 		return nil, fmt.Errorf("failed to make data directory %s: %w", s.dataPath, err)
