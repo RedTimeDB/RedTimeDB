@@ -3,12 +3,12 @@ package main
 import (
 	"strings"
 	"sync"
-	"time"
 
 	"github.com/RedTimeDB/RedTimeDB/core/redhub"
 	"github.com/RedTimeDB/RedTimeDB/core/redhub/pkg/resp"
 	tstorage "github.com/RedTimeDB/RedTimeDB/core/storage"
 	"github.com/RedTimeDB/RedTimeDB/lib/numconvert"
+	"github.com/RedTimeDB/RedTimeDB/lib/timeconvert"
 )
 
 var mu sync.RWMutex
@@ -35,21 +35,53 @@ func (rts *RTServer) handle(cmd resp.Command, out []byte) ([]byte, redhub.Action
 	case "ts.add":
 		//Append a sample to a time series.
 		//TS.ADD key timestamp value [RETENTION retentionPeriod] [ENCODING [COMPRESSED|UNCOMPRESSED]] [CHUNK_SIZE size] [ON_DUPLICATE policy] [LABELS {label value}...]
-		if len(cmd.Args) != 4 {
+		lens := len(cmd.Args)
+		if lens < 4 {
 			out = resp.AppendError(out, "ERR wrong number of arguments for '"+string(cmd.Args[0])+"' command")
 			break
 		}
-		var timestamp int64
-		if string(cmd.Args[2]) == "*" {
-			timestamp = time.Now().UnixNano() / 1e6
-		} else {
-			timestamp = numconvert.BytesToInt64(string(cmd.Args[2]))
+		timestamp := timeconvert.ArgTimeParsing(cmd.Args[2])
+		rows := []tstorage.Row{{Metric: string(cmd.Args[1]), DataPoint: tstorage.DataPoint{
+			Timestamp: timestamp, Value: numconvert.StringToFloat64(string(cmd.Args[3]))}}}
+		for i := 4; i < lens; i++ {
+			if strings.ToLower(string(cmd.Args[i])) == "labels" {
+				rows[0].Labels = make([]tstorage.Label, 0)
+				for j := i + 1; j+2 <= lens; j += 2 {
+					rows[0].Labels = append(rows[0].Labels, tstorage.Label{
+						Name:  string(cmd.Args[j]),
+						Value: string(cmd.Args[j+1]),
+					})
+				}
+			}
 		}
-		if err := rts.MemoryDB.InsertRows([]tstorage.Row{{Metric: string(cmd.Args[1]), DataPoint: tstorage.DataPoint{
-			Timestamp: timestamp, Value: numconvert.StringToFloat64(string(cmd.Args[3]))}}}); err != nil {
+		if err := rts.MemoryDB.InsertRows(rows); err != nil {
 			out = resp.AppendError(out, "ERR TS.ADD '"+err.Error()+"'")
 		} else {
 			out = resp.AppendInt(out, timestamp)
+		}
+	case "ts.madd":
+		//Append new samples to one or more time series.
+		//TS.MADD {key timestamp value}...
+		lens := len(cmd.Args)
+		if lens < 4 {
+			out = resp.AppendError(out, "ERR wrong number of arguments for '"+string(cmd.Args[0])+"' command")
+			break
+		}
+
+		rows := []tstorage.Row{{Metric: string(cmd.Args[1]), DataPoint: tstorage.DataPoint{
+			Timestamp: timeconvert.ArgTimeParsing(cmd.Args[2]), Value: numconvert.StringToFloat64(string(cmd.Args[3]))}}}
+		for i := 4; i+3 <= lens; i += 3 {
+			rows = append(rows, tstorage.Row{Metric: string(cmd.Args[i]), DataPoint: tstorage.DataPoint{
+				Timestamp: timeconvert.ArgTimeParsing(cmd.Args[i+1]), Value: numconvert.StringToFloat64(string(cmd.Args[i+2]))}})
+		}
+		if err := rts.MemoryDB.InsertRows(rows); err != nil {
+			out = resp.AppendError(out, "ERR TS.ADD '"+err.Error()+"'")
+		} else {
+			timestamp := make([]int64, 1)
+			for _, v := range rows {
+				timestamp = append(timestamp, v.Timestamp)
+			}
+			out = resp.AppendAny(out, timestamp)
 		}
 	case "ts.get":
 		//Get the last sample.
@@ -58,7 +90,13 @@ func (rts *RTServer) handle(cmd resp.Command, out []byte) ([]byte, redhub.Action
 			out = resp.AppendError(out, "ERR wrong number of arguments for '"+string(cmd.Args[0])+"' command")
 			break
 		}
-
+		sRow, err := rts.MemoryDB.SelectLastOne(string(cmd.Args[1]), nil)
+		if err != nil {
+			out = resp.AppendError(out, "ERR TS.RANGE '"+err.Error()+"'")
+		}
+		dataMap := make(map[resp.SimpleInt64]float64)
+		dataMap[resp.SimpleInt64(sRow.Timestamp)] = sRow.Value
+		out = resp.AppendAny(out, dataMap)
 	case "ts.range":
 		//Get the last sample.
 		//TS.GET key
@@ -70,23 +108,52 @@ func (rts *RTServer) handle(cmd resp.Command, out []byte) ([]byte, redhub.Action
 		if err != nil {
 			out = resp.AppendError(out, "ERR TS.RANGE '"+err.Error()+"'")
 		}
-		name := make([]map[resp.SimpleInt64]float64, 0)
+		dataMaps := make([]map[resp.SimpleInt64]float64, 0)
 		for _, v := range sRows {
-			name = append(name, map[resp.SimpleInt64]float64{resp.SimpleInt64(v.Timestamp): v.Value})
+			dataMaps = append(dataMaps, map[resp.SimpleInt64]float64{resp.SimpleInt64(v.Timestamp): v.Value})
 		}
-		out = resp.AppendAny(out, name)
+		out = resp.AppendAny(out, dataMaps)
 	case "ts.alter":
 		//Update the retention, chunk size, duplicate policy, and labels of an existing time series.
 		//TS.ALTER key [RETENTION retentionPeriod] [CHUNK_SIZE size] [DUPLICATE_POLICY policy] [LABELS [{label value}...]]
-	case "TS.CREATE":
+	case "ts.create":
 		//Create a new time series.
 		//TS.CREATE key [RETENTION retentionPeriod] [ENCODING [UNCOMPRESSED|COMPRESSED]] [CHUNK_SIZE size] [DUPLICATE_POLICY policy] [LABELS {label value}...]
-	case "TS.CREATERULE":
+		out = resp.AppendString(out, "OK")
+	case "ts.createrule":
 		//Create a compaction rule.
 		//TS.CREATERULE sourceKey destKey AGGREGATION aggregator bucketDuration
-	case "TS.DECRBY":
+	case "ts.decrby":
 		//Decrease the value of the sample with the maximal existing timestamp, or create a new sample with a value equal to the value of the sample with the maximal existing timestamp with a given decrement.
 		//TS.DECRBY key value [TIMESTAMP timestamp] [RETENTION retentionPeriod] [UNCOMPRESSED] [CHUNK_SIZE size] [LABELS {label value}...]
+	case "ts.del":
+		//Delete all samples between two timestamps for a given time series.
+		//The given timestamp interval is closed (inclusive), meaning samples which timestamp eqauls the fromTimestamp or toTimestamp will also be deleted.
+		//TS.DEL key fromTimestamp toTimestamp
+	case "ts.deleterule":
+		//Delete a compaction rule.
+		//TS.DELETERULE sourceKey destKey
+	case "ts.incrby":
+		//Increase the value of the sample with the maximal existing timestamp, or create a new sample with a value equal to the value of the sample with the maximal existing timestamp with a given increment.
+		//TS.INCRBY key value [TIMESTAMP timestamp] [RETENTION retentionPeriod] [UNCOMPRESSED] [CHUNK_SIZE size] [LABELS {label value}...]
+	case "ts.info":
+		//Returns information and statistics for a time series.
+		//TS.INFO key [DEBUG]
+	case "ts.mget":
+		//Get the last samples matching a specific filter.
+		//TS.MGET [WITHLABELS | SELECTED_LABELS label...] FILTER filter...
+	case "ts.mrange":
+		//Query a range across multiple time series by filters in forward direction.
+		//TS.MRANGE fromTimestamp toTimestamp [FILTER_BY_TS TS...] [FILTER_BY_VALUE min max] [WITHLABELS | SELECTED_LABELS label...] [COUNT count] [ALIGN value] [AGGREGATION aggregator bucketDuration] FILTER filter.. [GROUPBY label REDUCE reducer]
+	case "ts.mrevrange":
+		//Query a range across multiple time series by filters in reverse direction.
+		//TS.MREVRANGE fromTimestamp toTimestamp [FILTER_BY_TS TS...] [FILTER_BY_VALUE min max] [WITHLABELS | SELECTED_LABELS label...] [COUNT count] [ALIGN value] [AGGREGATION aggregator bucketDuration] FILTER filter.. [GROUPBY label REDUCE reducer]
+	case "ts.queryindex":
+		//Get all time series keys matching a filter list.
+		//TS.QUERYINDEX filter...
+	case "ts.revrange":
+		//Query a range in reverse direction.
+		//TS.REVRANGE key fromTimestamp toTimestamp [FILTER_BY_TS TS...] [FILTER_BY_VALUE min max] [COUNT count] [ALIGN value] [AGGREGATION aggregator bucketDuration]
 	case "TS.MADD":
 	case "ping":
 		out = resp.AppendString(out, "PONG")

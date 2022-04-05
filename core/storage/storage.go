@@ -66,6 +66,8 @@ type Reader interface {
 	// labels within the given start-end range. Keep in mind that start is inclusive, end is exclusive,
 	// and both must be Unix timestamp. ErrNoDataPoints will be returned if no data points found.
 	Select(metric string, labels []Label, start, end int64) (points []*DataPoint, err error)
+
+	SelectLastOne(metric string, labels []Label) (points *DataPoint, err error)
 }
 
 // Row includes a data point along with properties to identify a kind of metrics.
@@ -400,6 +402,36 @@ func (s *storage) Select(metric string, labels []Label, start, end int64) ([]*Da
 		return nil, ErrNoDataPoints
 	}
 	return points, nil
+}
+
+func (s *storage) SelectLastOne(metric string, labels []Label) (*DataPoint, error) {
+	if metric == "" {
+		return nil, fmt.Errorf("metric must be set")
+	}
+
+	// Iterate over all partitions from the newest one.
+	iterator := s.partitionList.newIterator()
+	for iterator.next() {
+		part := iterator.value()
+		if part == nil {
+			return nil, fmt.Errorf("unexpected empty partition found")
+		}
+		if part.minTimestamp() == 0 {
+			// Skip the partition that has no points.
+			continue
+		}
+		ps, err := part.selectDataPoint(metric, labels)
+		if errors.Is(err, ErrNoDataPoints) {
+			continue
+		}
+		if err != nil {
+			return nil, fmt.Errorf("failed to select data points: %w", err)
+		}
+		if ps != nil {
+			return ps, nil
+		}
+	}
+	return nil, ErrNoDataPoints
 }
 
 func (s *storage) Close() error {

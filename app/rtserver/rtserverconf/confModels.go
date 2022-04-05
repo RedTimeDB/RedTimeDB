@@ -59,4 +59,10 @@ type ApiConfS struct {
 }
 
 type MemoryDb struct {
+	DataPath           string `yaml:"data_path"`
+	PartitionDuration  string `yaml:"partition_duration"`
+	Retention          string `yaml:"retention"`
+	TimestampPrecision string `yaml:"timestamp_precision"`
+	WriteTimeout       string `yaml:"write_timeout"`
+	WALBufferedSize    int    `yaml:"wal_buffered_size"`
 }
