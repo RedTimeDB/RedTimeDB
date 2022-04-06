@@ -1,6 +1,6 @@
 <p align="center">
 <img 
-    src="./imgs/logo.png" width="80%" height="80%"
+    src="https://raw.githubusercontent.com/RedTimeDB/RedTimeDB/main/imgs/logo.png" width="80%" height="80%"
     border="0" alt="RedTimeDB" />
 </p>
 
@@ -21,7 +21,7 @@ The next-generation time series database, builds ultra-high-speed write and quer
 # Architecture
 <p align="center">
 <img 
-    src="imgs/architecture.jpg" 
+    src="https://raw.githubusercontent.com/RedTimeDB/RedTimeDB/main/imgs/architecture.jpg" 
      alt="Architecture">
 </p>
 
@@ -29,14 +29,14 @@ The next-generation time series database, builds ultra-high-speed write and quer
 ## metrics throughput
 <p align="center">
 <img 
-    src="./imgs/test_metrics.jpg" 
+    src="https://raw.githubusercontent.com/RedTimeDB/RedTimeDB/main/imgs/test_metrics.jpg" 
     border="0" alt="test_metrics" width="80%" />
 </p>
 
 ## rows throughput
 <p align="center">
 <img 
-    src="./imgs/test_rows.jpg" 
+    src="https://raw.githubusercontent.com/RedTimeDB/RedTimeDB/main/imgs/test_rows.jpg" 
     border="0" alt="test_rows" width="80%" />
 </p>
 
