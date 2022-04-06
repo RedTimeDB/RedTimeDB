@@ -1,37 +1,63 @@
-## Welcome to GitHub Pages
+<p align="center">
+<img 
+    src="./imgs/logo.png" width="80%" height="80%"
+    border="0" alt="RedTimeDB" />
+</p>
 
-You can use the [editor on GitHub](https://github.com/RedTimeDB/RedTimeDB/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+# RedTimeDB
 
-### Markdown
+![build](https://github.com/RedTimeDB/RedTimeDB/actions/workflows/build.yml/badge.svg) 
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FRedTimeDB%2FRedTimeDB.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FRedTimeDB%2FRedTimeDB?ref=badge_shield)
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+The next-generation time series database, builds ultra-high-speed write and query performance based on the memory model, and has remote persistent write support,Welcome to experience a faster time series database.
 
-```markdown
-Syntax highlighted code block
+1. Ultra-high data write performance.
+2. Excellent remote data persistence support.
+3. Support cluster horizontal expansion.
+4. Support community popular chart system.
+5. Support multiple protocols for write access: MQTT, HTTP, RESP.
 
-# Header 1
-## Header 2
-### Header 3
+# Architecture
+<p align="center">
+<img 
+    src="imgs/architecture.jpg" 
+     alt="Architecture">
+</p>
 
-- Bulleted
-- List
+# Model test
+## metrics throughput
+<p align="center">
+<img 
+    src="./imgs/test_metrics.jpg" 
+    border="0" alt="test_metrics" width="80%" />
+</p>
 
-1. Numbered
-2. List
+## rows throughput
+<p align="center">
+<img 
+    src="./imgs/test_rows.jpg" 
+    border="0" alt="test_rows" width="80%" />
+</p>
 
-**Bold** and _Italic_ and `Code` text
+# Command support
+## TS.ADD
+### Instruction description
+### Example of use
 
-[Link](url) and ![Image](src)
-```
+## TS.GET
+### Instruction description
+### Example of use
+## TS.MADD
+### Instruction description
+### Example of use
+## TS.MGET
+### Instruction description
+### Example of use
 
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
+# License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FRedTimeDB%2FRedTimeDB.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FRedTimeDB%2FRedTimeDB?ref=badge_large)
 
-### Jekyll Themes
+# Disclaimers
+When you use this software, you have agreed and stated that the author, maintainer and contributor of this software are not responsible for any risks, costs or problems you encounter. If you find a software defect or BUG, ​​please submit a patch to help improve it!
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/RedTimeDB/RedTimeDB/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
