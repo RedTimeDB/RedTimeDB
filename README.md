@@ -2,7 +2,7 @@
  * @Author: gitsrc
  * @Date: 2022-04-02 14:21:40
  * @LastEditors: gitsrc
- * @LastEditTime: 2022-04-06 17:49:46
+ * @LastEditTime: 2022-04-18 16:55:43
  * @FilePath: /RedTimeDB/README.md
 -->
 
@@ -29,7 +29,7 @@ The next-generation time series database, builds ultra-high-speed write and quer
 # Architecture
 <p align="center">
 <img 
-    src="imgs/architecture.jpg" 
+    src="imgs/architecture.png" 
      alt="Architecture">
 </p>
 
