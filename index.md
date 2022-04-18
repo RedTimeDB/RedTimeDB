@@ -17,14 +17,14 @@ The next-generation time series database, builds ultra-high-speed write and quer
 5. Support multiple protocols for write access: MQTT, HTTP, RESP.
 
 ## Model test
-## metrics throughput
+### metrics throughput
 <p align="center">
 <img 
     src="https://raw.githubusercontent.com/RedTimeDB/RedTimeDB/main/imgs/test_metrics.jpg" 
     border="0" alt="test_metrics" width="70%" />
 </p>
 
-## rows throughput
+### rows throughput
 <p align="center">
 <img 
     src="https://raw.githubusercontent.com/RedTimeDB/RedTimeDB/main/imgs/test_rows.jpg" 
