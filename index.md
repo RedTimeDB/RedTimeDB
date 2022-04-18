@@ -1,5 +1,5 @@
 
-## Welcome to RedTimeDB, a new generation of time series database.
+# Welcome to RedTimeDB
 
 ![build](https://github.com/RedTimeDB/RedTimeDB/actions/workflows/build.yml/badge.svg) 
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FRedTimeDB%2FRedTimeDB.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FRedTimeDB%2FRedTimeDB?ref=badge_shield)
@@ -33,21 +33,6 @@ The next-generation time series database, builds ultra-high-speed write and quer
     src="https://raw.githubusercontent.com/RedTimeDB/RedTimeDB/main/imgs/test_rows.jpg" 
     border="0" alt="test_rows" width="70%" />
 </p>
-
-# Command support
-## TS.ADD
-### Instruction description
-### Example of use
-
-## TS.GET
-### Instruction description
-### Example of use
-## TS.MADD
-### Instruction description
-### Example of use
-## TS.MGET
-### Instruction description
-### Example of use
 
 # License
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FRedTimeDB%2FRedTimeDB.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FRedTimeDB%2FRedTimeDB?ref=badge_large)
