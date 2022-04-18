@@ -1,10 +1,5 @@
-<p align="center">
-<img 
-    src="https://raw.githubusercontent.com/RedTimeDB/RedTimeDB/main/imgs/logo_transparent.png" width="300" height="300"
-    border="0" alt="RedTimeDB" />
-</p>
 
-# RedTimeDB
+## Welcome to RedTimeDB, a new generation of time series database.
 
 ![build](https://github.com/RedTimeDB/RedTimeDB/actions/workflows/build.yml/badge.svg) 
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FRedTimeDB%2FRedTimeDB.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FRedTimeDB%2FRedTimeDB?ref=badge_shield)
@@ -17,14 +12,14 @@ The next-generation time series database, builds ultra-high-speed write and quer
 4. Support community popular chart system.
 5. Support multiple protocols for write access: MQTT, HTTP, RESP.
 
-# Architecture
+## Architecture
 <p align="center">
 <img 
     src="https://raw.githubusercontent.com/RedTimeDB/RedTimeDB/main/imgs/architecture.jpg" 
      alt="Architecture">
 </p>
 
-# Model test
+## Model test
 ## metrics throughput
 <p align="center">
 <img 
