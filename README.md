@@ -29,7 +29,7 @@ The next-generation time series database, builds ultra-high-speed write and quer
 # Architecture
 <p align="center">
 <img 
-    src="imgs/architecture.png" 
+    src="imgs/architecture.png" width="80%"
      alt="Architecture">
 </p>
 
