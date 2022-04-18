@@ -1,6 +1,4 @@
 
-# Welcome to RedTimeDB
-
 <p align="center">
 <img 
     src="https://raw.githubusercontent.com/RedTimeDB/RedTimeDB/main/imgs/architecture.jpg" 
