@@ -1,19 +1,9 @@
-<!--
- * @Author: gitsrc
- * @Date: 2022-04-02 14:21:40
- * @LastEditors: gitsrc
- * @LastEditTime: 2022-04-06 18:18:43
- * @FilePath: /RedTimeDB/README.md
--->
 
 <p align="center">
 <img 
-    src="https://raw.githubusercontent.com/RedTimeDB/RedTimeDB/main/imgs/logo_transparent.png" width="300" height="300"
-    border="0" alt="RedTimeDB" />
+    src="https://res.cloudinary.com/malloc/image/upload/v1650274729/github/redtimedb/architecture_vfyyap.png" 
+     alt="Architecture">
 </p>
-
-
-# RedTimeDB
 
 ![build](https://github.com/RedTimeDB/RedTimeDB/actions/workflows/build.yml/badge.svg) 
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FRedTimeDB%2FRedTimeDB.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FRedTimeDB%2FRedTimeDB?ref=badge_shield)
@@ -26,42 +16,20 @@ The next-generation time series database, builds ultra-high-speed write and quer
 4. Support community popular chart system.
 5. Support multiple protocols for write access: MQTT, HTTP, RESP.
 
-# Architecture
+## Model test
+### metrics throughput
 <p align="center">
 <img 
-    src="imgs/architecture.jpg" 
-     alt="Architecture">
+    src="https://res.cloudinary.com/malloc/image/upload/v1650274758/github/redtimedb/test_metrics_sqrzmi.jpg" 
+    border="0" alt="test_metrics" />
 </p>
 
-# Model test
-## metrics throughput
+### rows throughput
 <p align="center">
 <img 
-    src="./imgs/test_metrics.jpg" 
-    border="0" alt="test_metrics" width="80%" />
+    src="https://res.cloudinary.com/malloc/image/upload/v1650274776/github/redtimedb/test_rows_st858n.jpg" 
+    border="0" alt="test_rows" />
 </p>
-
-## rows throughput
-<p align="center">
-<img 
-    src="./imgs/test_rows.jpg" 
-    border="0" alt="test_rows" width="80%" />
-</p>
-
-# Command support
-## TS.ADD
-### Instruction description
-### Example of use
-
-## TS.GET
-### Instruction description
-### Example of use
-## TS.MADD
-### Instruction description
-### Example of use
-## TS.MGET
-### Instruction description
-### Example of use
 
 # License
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FRedTimeDB%2FRedTimeDB.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FRedTimeDB%2FRedTimeDB?ref=badge_large)
