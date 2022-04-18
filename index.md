@@ -21,14 +21,14 @@ The next-generation time series database, builds ultra-high-speed write and quer
 <p align="center">
 <img 
     src="https://raw.githubusercontent.com/RedTimeDB/RedTimeDB/main/imgs/test_metrics.jpg" 
-    border="0" alt="test_metrics" width="70%" />
+    border="0" alt="test_metrics" />
 </p>
 
 ### rows throughput
 <p align="center">
 <img 
     src="https://raw.githubusercontent.com/RedTimeDB/RedTimeDB/main/imgs/test_rows.jpg" 
-    border="0" alt="test_rows" width="70%" />
+    border="0" alt="test_rows" />
 </p>
 
 # License
