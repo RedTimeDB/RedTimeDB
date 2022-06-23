@@ -2,11 +2,12 @@ package redhub
 
 import (
 	"bytes"
+	"io"
 	"sync"
 	"time"
 
 	"github.com/RedTimeDB/RedTimeDB/core/redhub/pkg/resp"
-	"github.com/panjf2000/gnet"
+	"github.com/RedTimeDB/RedTimeDB/lib/gnet"
 )
 
 type Action int
@@ -124,57 +125,63 @@ func (rs *RedHub) OnClosed(c gnet.Conn, err error) (action gnet.Action) {
 }
 
 func (rs *RedHub) React(frame []byte, c gnet.Conn) (out []byte, action gnet.Action) {
-	rs.connSync.RLock()
-	defer rs.connSync.RUnlock()
-	cb, ok := rs.redHubBufMap[c]
-	if !ok {
-		out = resp.AppendError(out, "ERR Client is closed")
-		return
-	}
-	cb.buf.Write(frame)
-	cmds, lastbyte, err := resp.ReadCommands(cb.buf.Bytes())
-	if err != nil {
-		out = resp.AppendError(out, "ERR "+err.Error())
-		return
-	}
-	cb.command = append(cb.command, cmds...)
-	cb.buf.Reset()
-	if len(lastbyte) == 0 {
-		var status Action
-		for len(cb.command) > 0 {
-			cmd := cb.command[0]
-			if len(cb.command) == 1 {
-				cb.command = nil
-			} else {
-				cb.command = cb.command[1:]
+	//decodebuff := credis.NewDecoder(c.Respbuffer())
+	//for {
+	//	command, err := decodebuff.Decode()
+	//	if err != nil {
+	//		//if err.Error() == io.EOF.Error() {
+	//		//	action = gnet.Close
+	//		//}
+	//		return
+	//	}
+	//
+	//	if command.Type != credis.TypeArray {
+	//		return
+	//	}
+	//
+	//	commandsCount := len(command.Array)
+	//
+	//	if commandsCount < 1 {
+	//		return
+	//	}
+	//	if command.Array[0].Type != credis.TypeBulkBytes {
+	//		return
+	//	}
+	//
+	//	commandArgs := make([]interface{}, commandsCount)
+	//	for i := 0; i < commandsCount; i++ {
+	//		commandArgs[i] = command.Array[i].Value
+	//	}
+	//	var status Action
+	//	out, status = rs.handler1(commandArgs, out)
+	//	switch status {
+	//	case Close:
+	//		action = gnet.Close
+	//	}
+	//}
+	//return
+
+	r := resp.NewReader(c.Respbuffer())
+	var status Action
+	for {
+		cmd, err, last := r.ReadCommand()
+		if err != nil {
+			if len(last) != 0 {
+				c.BuffLock()
+				c.Respbuffer().Write(last)
+				c.BuffUnLock()
+				break
 			}
-			out, status = rs.handler(cmd, out)
-			switch status {
-			case Close:
-				action = gnet.Close
+			if err == io.EOF {
+				//action = gnet.Close
+				break
 			}
 		}
-	} else {
-		cb.buf.Write(lastbyte)
+		out, status = rs.handler(cmd, out)
+		switch status {
+		case Close:
+			action = gnet.Close
+		}
 	}
 	return
-}
-
-func ListendAndServe(addr string, options Options, rh *RedHub) error {
-	serveOptions := gnet.Options{
-		Multicore:        options.Multicore,
-		LockOSThread:     options.LockOSThread,
-		ReadBufferCap:    options.ReadBufferCap,
-		LB:               options.LB,
-		NumEventLoop:     options.NumEventLoop,
-		ReusePort:        options.ReusePort,
-		Ticker:           options.Ticker,
-		TCPKeepAlive:     options.TCPKeepAlive,
-		TCPNoDelay:       options.TCPNoDelay,
-		SocketRecvBuffer: options.SocketRecvBuffer,
-		SocketSendBuffer: options.SocketSendBuffer,
-		Codec:            options.Codec,
-	}
-
-	return gnet.Serve(rh, addr, gnet.WithOptions(serveOptions))
 }

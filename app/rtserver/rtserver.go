@@ -11,7 +11,7 @@ package main
 import (
 	"sync"
 
-	"github.com/panjf2000/gnet"
+	"github.com/RedTimeDB/RedTimeDB/lib/gnet"
 
 	confer "github.com/RedTimeDB/RedTimeDB/app/rtserver/rtserverconf"
 	"github.com/RedTimeDB/RedTimeDB/core/redhub"
