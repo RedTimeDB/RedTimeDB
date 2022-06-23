@@ -29,9 +29,6 @@ func (rts *RTServer) onClose(c *redhub.Conn, err error) (action redhub.Action) {
 
 func (rts *RTServer) handle(cmd resp.Command, out []byte) ([]byte, redhub.Action) {
 	var status redhub.Action
-	//if strings.ToLower(string(cmd.Args[0])) != "ts.madd" {
-	//	fmt.Println(string(cmd.Args[0]))
-	//}
 	switch strings.ToLower(string(cmd.Args[0])) {
 	default:
 		out = resp.AppendError(out, "ERR unknown command '"+string(cmd.Args[0])+"'")
