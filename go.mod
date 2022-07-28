@@ -3,7 +3,7 @@ module github.com/RedTimeDB/RedTimeDB
 go 1.18
 
 require (
-	github.com/panjf2000/gnet v1.6.5
+	github.com/panjf2000/gnet v1.6.6
 	github.com/stretchr/testify v1.8.0
 	go.uber.org/automaxprocs v1.5.1
 	gopkg.in/yaml.v2 v2.4.0
