@@ -51,17 +51,88 @@ The next-generation time series database, builds ultra-high-speed write and quer
 # Command support
 ## TS.ADD
 ### Instruction description
+Append a sample to a time series.
+
+### Syntax
+```
+TS.ADD key timestamp value 
+  [RETENTION retentionPeriod] 
+  [ENCODING [COMPRESSED|UNCOMPRESSED]] 
+  [CHUNK_SIZE size] 
+  [ON_DUPLICATE policy] 
+  [LABELS {label value}...]
+```
+
 ### Example of use
+```
+127.0.0.1:6380> TS.ADD temperature:3:11 1651708850000 27
+(integer) 1651708850000
+127.0.0.1:6380> TS.ADD temperature:3:11 1651708860000 28
+(integer) 1651708860000
+127.0.0.1:6380> TS.ADD temperature:3:11 1651708870000 29
+(integer) 1651708870000
+```
 
 ## TS.GET
 ### Instruction description
+Get the last sample.
+### Syntax
+```
+TS.GET key 
+  [LATEST]
+```
 ### Example of use
+```
+127.0.0.1:6380> TS.GET temperature:3:11
+1) (integer) 1651708850000
+2) "27"
+```
+
 ## TS.MADD
 ### Instruction description
+Append new samples to one or more time series.
+
+### Syntax
+```TS.MADD {key timestamp value}...```
+
 ### Example of use
-## TS.MGET
+```
+127.0.0.1:6380> TS.MADD cpu_usage_user{1687509904} 1651708850000 33 cpu_usage_system{1687509904} 1651708850000 70 cpu_usage_idle{1687509904} 1651708850000 79 cpu_usage_nice{1687509904} 1651708850000 6 cpu_usage_iowait{1687509904} 1651708850000 56 cpu_usage_irq{1687509904} 1651708850000 29 cpu_usage_softirq{1687509904} 1651708850000 65 cpu_usage_steal{1687509904} 1651708850000 63 cpu_usage_guest{1687509904} 1651708850000 63 cpu_usage_guest_nice{1687509904} 1651708850000 83
+ 1) "1651708850000"
+ 2) "1651708850000"
+ 3) "1651708850000"
+ 4) "1651708850000"
+ 5) "1651708850000"
+ 6) "1651708850000"
+ 7) "1651708850000"
+ 8) "1651708850000"
+ 9) "1651708850000"
+10) "1651708850000"
+```
+
+## TS.RANGE
 ### Instruction description
+Query a range in forward direction.
+### Syntax
+```
+TS.RANGE key fromTimestamp toTimestamp
+  [LATEST]
+  [FILTER_BY_TS ts...]
+  [FILTER_BY_VALUE min max]
+  [COUNT count] 
+  [[ALIGN align] AGGREGATION aggregator bucketDuration [BUCKETTIMESTAMP bt] [EMPTY]]
+```
 ### Example of use
+```
+127.0.0.1:6380> TS.RANGE temperature:3:11 1651708840000 1651708890000
+1) 1) (integer) 1651708850000
+   2) "27"
+2) 1) (integer) 1651708860000
+   2) "28"
+3) 1) (integer) 1651708870000
+   2) "29"
+```
+
 
 # License
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FRedTimeDB%2FRedTimeDB.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FRedTimeDB%2FRedTimeDB?ref=badge_large)
