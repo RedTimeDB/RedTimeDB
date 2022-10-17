@@ -16,6 +16,7 @@
 package gnet
 
 import (
+	"bytes"
 	"net"
 	"sync"
 
@@ -63,6 +64,10 @@ type stdConn struct {
 	remoteAddr    net.Addr               // remote peer addr
 	byteBuffer    *bbPool.ByteBuffer     // bytes buffer for buffering current packet and data in ring-buffer
 	inboundBuffer *ringbuffer.RingBuffer // buffer for data from the peer
+	respbuffer    *bytes.Buffer
+	rw            sync.RWMutex
+	closed        bool
+	readChan      chan struct{}
 }
 
 func packTCPConn(c *stdConn, buf []byte) *tcpConn {
@@ -84,6 +89,8 @@ func newTCPConn(conn net.Conn, el *eventloop) (c *stdConn) {
 		loop:          el,
 		codec:         el.svr.codec,
 		inboundBuffer: rbPool.Get(),
+		respbuffer:    new(bytes.Buffer),
+		readChan:      make(chan struct{}, 0),
 	}
 	c.localAddr = el.svr.ln.addr
 	c.remoteAddr = c.conn.RemoteAddr()
@@ -232,6 +239,12 @@ func (c *stdConn) Context() interface{}       { return c.ctx }
 func (c *stdConn) SetContext(ctx interface{}) { c.ctx = ctx }
 func (c *stdConn) LocalAddr() net.Addr        { return c.localAddr }
 func (c *stdConn) RemoteAddr() net.Addr       { return c.remoteAddr }
+
+func (c *stdConn) Respbuffer() *bytes.Buffer { return c.respbuffer }
+
+func (c *stdConn) BuffLock() { c.rw.Lock() }
+
+func (c *stdConn) BuffUnLock() { c.rw.Unlock() }
 
 // ==================================== Concurrency-safe API's ====================================
 

@@ -22,6 +22,7 @@ import (
 	"os"
 	"runtime"
 	"sync/atomic"
+	"unsafe"
 
 	"golang.org/x/sys/unix"
 

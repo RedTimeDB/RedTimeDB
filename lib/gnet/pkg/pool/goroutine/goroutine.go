@@ -17,7 +17,7 @@ package goroutine
 import (
 	"time"
 
-	ants "github.com/panjf2000/ants/v2"
+	"github.com/panjf2000/ants/v2"
 )
 
 const (

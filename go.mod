@@ -4,7 +4,6 @@ go 1.18
 
 require (
 	github.com/panjf2000/ants/v2 v2.4.7
-	github.com/panjf2000/gnet v1.6.6
 	github.com/stretchr/testify v1.7.1
 	github.com/valyala/bytebufferpool v1.0.0
 	go.uber.org/automaxprocs v1.4.0
@@ -15,6 +14,7 @@ require (
 )
 
 require (
+	github.com/BurntSushi/toml v0.3.1 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect

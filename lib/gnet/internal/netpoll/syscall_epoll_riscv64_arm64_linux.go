@@ -19,6 +19,8 @@
 package netpoll
 
 import (
+	"unsafe"
+
 	"golang.org/x/sys/unix"
 )
 
