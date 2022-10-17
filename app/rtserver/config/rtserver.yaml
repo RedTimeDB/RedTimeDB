@@ -9,7 +9,6 @@ net:
   lock_os_thread: false
   read_buffer_cap: 0
 
-
 #RTServer memory cache related parameters
 cache:
   enable: false
@@ -25,6 +24,14 @@ api:
 debug:
   enable: false
   pprof_uri: "127.0.0.1:6060"
+
+memory_db:
+  data_path: ""  #Defaults to empty string which means no data will get persisted.
+  partition_duration: "1h"  # specifies the timestamp range of partitions.Defaults to 1h
+  retention: "14d" # specifies when to remove old data.
+  timestamp_precision: "ms"  # specifies the precision of timestamps to be used by all operations.Defaults to Milliseconds
+  write_timeout: "30s" # specifies the timeout to wait when workers are busy.Defaults to 30s.
+  wal_buffered_size: 4096 # WithWAL specifies the buffered byte size before flushing a WAL file.-1 disables using WAL.0 means it writes to a file whenever data point comes in.
 
 memory_db:
   partitionDuration:

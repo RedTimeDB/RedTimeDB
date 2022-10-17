@@ -34,7 +34,9 @@ func main() {
 	}
 
 	if rtserver.RH != nil {
-		rtserver.ListendAndServe()
+		if err = rtserver.ListendAndServe(); err != nil {
+			log.Panic(err)
+		}
 	}
 
 	return

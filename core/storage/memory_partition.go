@@ -125,6 +125,12 @@ func (m *memoryPartition) selectDataPoints(metric string, labels []Label, start,
 	return mt.selectPoints(start, end), nil
 }
 
+func (m *memoryPartition) selectDataPoint(metric string, labels []Label) (*DataPoint, error) {
+	name := marshalMetricName(metric, labels)
+	mt := m.getMetric(name)
+	return mt.selectPoint(), nil
+}
+
 // getMetric gives back the reference to the metrics list whose name is the given one.
 // If none, it creates a new one.
 func (m *memoryPartition) getMetric(name string) *memoryMetric {
@@ -208,6 +214,17 @@ func (m *memoryMetric) insertPoint(point *DataPoint) {
 	}
 
 	m.outOfOrderPoints = append(m.outOfOrderPoints, point)
+}
+
+// selectPoints returns a last one.
+func (m *memoryMetric) selectPoint() *DataPoint {
+	size := atomic.LoadInt64(&m.size)
+	m.mu.RLock()
+	defer m.mu.RUnlock()
+	if size <= 0 {
+		return nil
+	}
+	return m.points[size-1]
 }
 
 // selectPoints returns a new slice by re-slicing with [startIdx:endIdx].

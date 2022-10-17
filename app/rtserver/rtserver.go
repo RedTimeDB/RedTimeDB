@@ -46,8 +46,7 @@ func GetNewRTServer(conFileURI string) (rtserver RTServer, err error) {
 	return
 }
 
-func (rts *RTServer) ListendAndServe() {
-
+func (rts *RTServer) ListendAndServe() error {
 	serveOptions := gnet.Options{
 		Multicore:        rts.Confer.Opts.NetConf.Muticore,
 		LockOSThread:     rts.Confer.Opts.NetConf.LockOSThread,
@@ -62,5 +61,5 @@ func (rts *RTServer) ListendAndServe() {
 		SocketSendBuffer: rts.Confer.Opts.NetConf.SocketSendBuffer,
 	}
 
-	gnet.Serve(rts.RH, rts.Confer.Opts.NetConf.ListenUri, gnet.WithOptions(serveOptions))
+	return gnet.Serve(rts.RH, rts.Confer.Opts.NetConf.ListenUri, gnet.WithOptions(serveOptions))
 }
