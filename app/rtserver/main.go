@@ -10,8 +10,6 @@ package main
 
 import (
 	"log"
-
-	"github.com/RedTimeDB/RedTimeDB/core/redhub"
 )
 
 const configFileDefaultName = "rtserver.yaml"
@@ -35,13 +33,10 @@ func main() {
 		log.Panic(err)
 	}
 
-	option := redhub.Options{
-		Multicore: true,
-		ReusePort: true,
-	}
-
 	if rtserver.RH != nil {
-		redhub.ListendAndServe(rtserver.Confer.Opts.NetConf.ListenUri, option, rtserver.RH)
+		if err = rtserver.ListendAndServe(); err != nil {
+			log.Panic(err)
+		}
 	}
 
 	return

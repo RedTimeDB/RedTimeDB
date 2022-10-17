@@ -145,6 +145,37 @@ func (d *diskPartition) selectDataPoints(metric string, labels []Label, start, e
 	return points, nil
 }
 
+func (d *diskPartition) selectDataPoint(metric string, labels []Label) (*DataPoint, error) {
+	if d.expired() {
+		return nil, fmt.Errorf("this partition is expired: %w", ErrNoDataPoints)
+	}
+	name := marshalMetricName(metric, labels)
+	mt, ok := d.meta.Metrics[name]
+	if !ok {
+		return nil, ErrNoDataPoints
+	}
+	r := bytes.NewReader(d.mappedFile)
+	if _, err := r.Seek(mt.Offset, io.SeekStart); err != nil {
+		return nil, fmt.Errorf("failed to seek: %w", err)
+	}
+	decoder, err := newSeriesDecoder(r)
+	if err != nil {
+		return nil, fmt.Errorf("failed to generate decoder for metric %q in %q: %w", name, d.dirPath, err)
+	}
+
+	// TODO: Divide fixed-lengh chunks when flushing, and index it.
+	for i := 0; i < int(mt.NumDataPoints); i++ {
+		point := &DataPoint{}
+		if err := decoder.decodePoint(point); err != nil {
+			return nil, fmt.Errorf("failed to decode point of metric %q in %q: %w", name, d.dirPath, err)
+		}
+		if i == int(mt.NumDataPoints)-1 {
+			return point, nil
+		}
+	}
+	return nil, ErrNoDataPoints
+}
+
 func (d *diskPartition) minTimestamp() int64 {
 	return d.meta.MinTimestamp
 }

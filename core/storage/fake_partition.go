@@ -17,6 +17,10 @@ func (f *fakePartition) selectDataPoints(_ string, _ []Label, _, _ int64) ([]*Da
 	return nil, f.err
 }
 
+func (f *fakePartition) selectDataPoint(_ string, _ []Label) (*DataPoint, error) {
+	return nil, f.err
+}
+
 func (f *fakePartition) minTimestamp() int64 {
 	return f.minT
 }
