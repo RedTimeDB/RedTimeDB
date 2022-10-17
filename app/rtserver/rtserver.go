@@ -11,11 +11,10 @@ package main
 import (
 	"sync"
 
-	"github.com/panjf2000/gnet"
-
 	confer "github.com/RedTimeDB/RedTimeDB/app/rtserver/rtserverconf"
 	"github.com/RedTimeDB/RedTimeDB/core/redhub"
 	tstorage "github.com/RedTimeDB/RedTimeDB/core/storage"
+	"github.com/RedTimeDB/RedTimeDB/lib/gnet"
 )
 
 //RTServer is the core structure of RedTimeServer
