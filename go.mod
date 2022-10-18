@@ -6,7 +6,7 @@ require (
 	github.com/panjf2000/ants/v2 v2.4.7
 	github.com/stretchr/testify v1.8.0
 	github.com/valyala/bytebufferpool v1.0.0
-	go.uber.org/automaxprocs v1.4.0
+	go.uber.org/automaxprocs v1.5.1
 	go.uber.org/zap v1.23.0
 	golang.org/x/sys v0.0.0-20211204120058-94396e421777
 	gopkg.in/natefinch/lumberjack.v2 v2.0.0
@@ -16,6 +16,7 @@ require (
 require (
 	github.com/BurntSushi/toml v0.3.1 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
+	github.com/kr/text v0.2.0 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	go.uber.org/atomic v1.9.0 // indirect
