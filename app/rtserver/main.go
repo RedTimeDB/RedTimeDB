@@ -1,11 +1,3 @@
-/*
- * @Author: gitsrc
- * @Date: 2022-04-02 11:37:18
- * @LastEditors: gitsrc
- * @LastEditTime: 2022-04-02 13:34:00
- * @FilePath: /RedTimeDB/app/rtserver/main.go
- */
-
 package main
 
 import (

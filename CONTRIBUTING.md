@@ -1,6 +1,6 @@
 # Contribution Guidelines
 
-Thank you for your interest in RedTimeDB!
+Thank you for your interest in RedEpochDB!
 
 This project welcomes contributions and suggestions. Most contributions require you to signoff on your commits via
 the Developer Certificate of Origin (DCO). When you submit a pull request, a DCO-bot will automatically determine
@@ -12,7 +12,7 @@ This project has adopted the [Contributor Covenant Code of Conduct](CODE-OF-COND
 
 Contributions come in many forms: submitting issues, writing code, participating in discussions and community calls.
 
-This document provides the guidelines for how to contribute to the RedTimeDB project.
+This document provides the guidelines for how to contribute to the RedEpochDB project.
 
 ## Issues
 
@@ -32,7 +32,7 @@ There are 4 types of issues:
 Before you file an issue, make sure you've checked the following:
 
 1. Is it the right repository?
-    - The RedTimeDB project is distributed across multiple repositories. Check the list of [repositories](https://github.com/RedTimeDB) if you aren't sure which repo is the correct one.
+    - The RedEpochDB project is distributed across multiple repositories. Check the list of [repositories](https://github.com/RedEpochDB) if you aren't sure which repo is the correct one.
 1. Check for existing issues
     - Before you create a new issue, please do a search in issues to see if the issue or feature request has already been filed.
     - If you find your issue already exists, make relevant comments and add your [reaction](https://github.com/blog/2119-add-reaction-to-pull-requests-issues-and-comments). Use a reaction:
@@ -41,9 +41,9 @@ Before you file an issue, make sure you've checked the following:
 1. For bugs
     - Check it's not an environment issue. For example, if running on Kubernetes, make sure prerequisites are in place. (state stores, bindings, etc.)
 
-## Contributing to RedTimeDB
+## Contributing to RedEpochDB
 
-This section describes the guidelines for contributing code / docs to RedTimeDB.
+This section describes the guidelines for contributing code / docs to RedEpochDB.
 
 ### Pull Requests
 
@@ -66,7 +66,7 @@ A good way to communicate before investing too much time is to create a "Work-in
 
 #### Every commit needs to be signed
 
-The Developer Certificate of Origin (DCO) is a lightweight way for contributors to certify that they wrote or otherwise have the right to submit the code they are contributing to the project. Here is the full text of the [DCO](https://github.com/RedTimeDB/.github/blob/main/DCO.md), reformatted for readability:
+The Developer Certificate of Origin (DCO) is a lightweight way for contributors to certify that they wrote or otherwise have the right to submit the code they are contributing to the project. Here is the full text of the [DCO](https://github.com/RedEpochDB/.github/blob/main/DCO.md), reformatted for readability:
 ```
 By making a contribution to this project, I certify that:
 

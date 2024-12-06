@@ -1,11 +1,3 @@
-/*
- * @Author: gitsrc
- * @Date: 2022-04-02 11:56:55
- * @LastEditors: gitsrc
- * @LastEditTime: 2022-04-02 13:18:47
- * @FilePath: /RedTimeDB/app/rtserver/rtserverconf/confModels.go
- */
-
 package confer
 
 import (
@@ -25,7 +17,7 @@ type RTServerConfS struct {
 	CacheConf CacheS     `yaml:"cache"` //Cache related configuration
 }
 
-//CacheS is cache configuration
+// CacheS is cache configuration
 type CacheS struct {
 	Enable            bool `yaml:"enable"`
 	MaxItemsSize      int  `yaml:"max_items_size"`     //Maximum number of items in cache
