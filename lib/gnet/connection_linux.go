@@ -17,7 +17,7 @@
 
 package gnet
 
-import "github.com/RedTimeDB/RedTimeDB/lib/gnet/internal/netpoll"
+import "github.com/RedEpochDB/RedEpochDB/lib/gnet/internal/netpoll"
 
 func (c *conn) handleEvents(_ int, ev uint32) error {
 	// Don't change the ordering of processing EPOLLOUT | EPOLLRDHUP / EPOLLIN unless you're 100%

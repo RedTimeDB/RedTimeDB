@@ -17,7 +17,7 @@ package listbuffer
 import (
 	"math"
 
-	bbPool "github.com/RedTimeDB/RedTimeDB/lib/gnet/pkg/pool/bytebuffer"
+	bbPool "github.com/RedEpochDB/RedEpochDB/lib/gnet/pkg/pool/bytebuffer"
 )
 
 // ByteBuffer is the node of the linked list of bytes.

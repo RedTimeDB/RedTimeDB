@@ -24,8 +24,8 @@ import (
 	"sync"
 	"sync/atomic"
 
-	"github.com/RedTimeDB/RedTimeDB/lib/gnet/internal/netpoll"
-	"github.com/RedTimeDB/RedTimeDB/lib/gnet/pkg/errors"
+	"github.com/RedEpochDB/RedEpochDB/lib/gnet/internal/netpoll"
+	"github.com/RedEpochDB/RedEpochDB/lib/gnet/pkg/errors"
 )
 
 type server struct {

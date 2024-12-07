@@ -22,7 +22,7 @@ import (
 
 	"golang.org/x/sys/unix"
 
-	bsPool "github.com/RedTimeDB/RedTimeDB/lib/gnet/pkg/pool/byteslice"
+	bsPool "github.com/RedEpochDB/RedEpochDB/lib/gnet/pkg/pool/byteslice"
 )
 
 // SockaddrToTCPOrUnixAddr converts a Sockaddr to a net.TCPAddr or net.UnixAddr.

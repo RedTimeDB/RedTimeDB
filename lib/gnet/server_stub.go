@@ -19,7 +19,7 @@
 package gnet
 
 import (
-	"github.com/RedTimeDB/RedTimeDB/lib/gnet/pkg/errors"
+	"github.com/RedEpochDB/RedEpochDB/lib/gnet/pkg/errors"
 )
 
 type server struct {

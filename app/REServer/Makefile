@@ -1,4 +1,4 @@
-PROG=bin/rtserver
+PROG=bin/REServer
 
 
 SRCS=./
@@ -7,7 +7,7 @@ SRCS=./
 INSTALL_PREFIX=/usr/local
 
 # Configure the installation directory
-CONF_INSTALL_PREFIX=/usr/local/rtserver
+CONF_INSTALL_PREFIX=/usr/local/REServer
 
 # git commit hash
 COMMIT_HASH=$(shell git rev-parse --short HEAD || echo "GitNotFound")
@@ -53,7 +53,7 @@ race:
 RELEASE_DATE = $(shell date '+%Y%m%d%H%M%S')
 RELEASE_VERSION = $(shell git rev-parse --short HEAD || echo "GitNotFound")
 RELEASE_DIR=release_bin
-RELEASE_BIN_NAME=rtserver
+RELEASE_BIN_NAME=REServer
 release:
 	if [ ! -d "./$(RELEASE_DIR)/$(RELEASE_DATE)_$(RELEASE_VERSION)" ]; then \
 	mkdir -p ./$(RELEASE_DIR)/$(RELEASE_DATE)_$(RELEASE_VERSION); \
@@ -73,6 +73,6 @@ install:
 clean:
 	rm -rf ./bin
 	
-	rm -rf $(INSTALL_PREFIX)/bin/rtserver
+	rm -rf $(INSTALL_PREFIX)/bin/REServer
 	
 	rm -rf $(CONF_INSTALL_PREFIX)

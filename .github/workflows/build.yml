@@ -21,7 +21,7 @@ jobs:
     - name: Build
       run: |
         pwd
-        cd app/rtserver
+        cd app/REServer
         pwd
         make
         make linux_x86_64

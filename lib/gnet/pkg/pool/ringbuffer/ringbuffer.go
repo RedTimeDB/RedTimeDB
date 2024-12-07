@@ -23,7 +23,7 @@ import (
 	"sync"
 	"sync/atomic"
 
-	"github.com/RedTimeDB/RedTimeDB/lib/gnet/pkg/ringbuffer"
+	"github.com/RedEpochDB/RedEpochDB/lib/gnet/pkg/ringbuffer"
 )
 
 const (

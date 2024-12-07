@@ -18,7 +18,7 @@ import (
 	"hash/crc32"
 	"net"
 
-	"github.com/RedTimeDB/RedTimeDB/lib/gnet/internal/toolkit"
+	"github.com/RedEpochDB/RedEpochDB/lib/gnet/internal/toolkit"
 )
 
 // LoadBalancing represents the type of load-balancing algorithm.

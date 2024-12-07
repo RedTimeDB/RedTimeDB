@@ -24,7 +24,7 @@ import (
 
 	"golang.org/x/sys/unix"
 
-	"github.com/RedTimeDB/RedTimeDB/lib/gnet/pkg/errors"
+	"github.com/RedEpochDB/RedEpochDB/lib/gnet/pkg/errors"
 )
 
 var listenerBacklogMaxSize = maxListenerBacklog()

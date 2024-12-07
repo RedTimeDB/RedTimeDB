@@ -22,7 +22,7 @@ import (
 	"sync"
 	"sync/atomic"
 
-	gerrors "github.com/RedTimeDB/RedTimeDB/lib/gnet/pkg/errors"
+	gerrors "github.com/RedEpochDB/RedEpochDB/lib/gnet/pkg/errors"
 )
 
 var errCloseAllConns = errors.New("close all connections in event-loop")

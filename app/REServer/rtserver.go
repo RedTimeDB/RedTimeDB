@@ -1,51 +1,43 @@
-/*
- * @Author: gitsrc
- * @Date: 2022-04-02 11:53:31
- * @LastEditors: gitsrc
- * @LastEditTime: 2022-04-02 13:51:55
- * @FilePath: /RedTimeDB/app/rtserver/rtserver.go
- */
-
 package main
 
 import (
 	"sync"
 
-	confer "github.com/RedTimeDB/RedTimeDB/app/rtserver/rtserverconf"
-	"github.com/RedTimeDB/RedTimeDB/core/redhub"
-	"github.com/RedTimeDB/RedTimeDB/lib/gnet"
+	confer "github.com/RedEpochDB/RedEpochDB/app/REServer/REServerconf"
+	"github.com/RedEpochDB/RedEpochDB/core/redhub"
+	"github.com/RedEpochDB/RedEpochDB/lib/gnet"
 	tstorage "github.com/nakabonne/tstorage"
 )
 
-// RTServer is the core structure of RedTimeServer
-type RTServer struct {
+// REServer is the core structure of RedEpochDB
+type REServer struct {
 	Confer   confer.Confer
 	Mutex    sync.RWMutex
 	RH       *redhub.RedHub
 	MemoryDB tstorage.Storage
 }
 
-// GetNewRTServer Used to create the RedTimeServer core structure
-func GetNewRTServer(conFileURI string) (rtserver RTServer, err error) {
+// GetNewREServer Used to create the RedEpochDB core structure
+func GetNewREServer(conFileURI string) (REServer REServer, err error) {
 	//get confer object
-	rtserver.Confer, err = confer.GetNewConfer(conFileURI)
+	REServer.Confer, err = confer.GetNewConfer(conFileURI)
 	if err != nil {
 		return
 	}
 
-	rtserver.MemoryDB, err = tstorage.NewStorage(
+	REServer.MemoryDB, err = tstorage.NewStorage(
 		tstorage.WithTimestampPrecision(tstorage.Milliseconds),
 	)
 	if err != nil {
 		return
 	}
 	//Focus adjustment section
-	rtserver.RH = rtserver.NewRTSHandle()
+	REServer.RH = REServer.NewRTSHandle()
 
 	return
 }
 
-func (rts *RTServer) ListendAndServe() error {
+func (rts *REServer) ListendAndServe() error {
 	serveOptions := gnet.Options{
 		Multicore:        rts.Confer.Opts.NetConf.Muticore,
 		LockOSThread:     rts.Confer.Opts.NetConf.LockOSThread,

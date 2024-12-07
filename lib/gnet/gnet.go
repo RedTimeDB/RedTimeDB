@@ -23,10 +23,10 @@ import (
 	"sync"
 	"time"
 
-	"github.com/RedTimeDB/RedTimeDB/lib/gnet/internal/toolkit"
-	"github.com/RedTimeDB/RedTimeDB/lib/gnet/pkg/errors"
-	"github.com/RedTimeDB/RedTimeDB/lib/gnet/pkg/logging"
-	"github.com/RedTimeDB/RedTimeDB/lib/gnet/pkg/ringbuffer"
+	"github.com/RedEpochDB/RedEpochDB/lib/gnet/internal/toolkit"
+	"github.com/RedEpochDB/RedEpochDB/lib/gnet/pkg/errors"
+	"github.com/RedEpochDB/RedEpochDB/lib/gnet/pkg/logging"
+	"github.com/RedEpochDB/RedEpochDB/lib/gnet/pkg/ringbuffer"
 )
 
 // Action is an action that occurs after the completion of an event.
@@ -264,13 +264,14 @@ func (es *EventServer) Tick() (delay time.Duration, action Action) {
 // Address should use a scheme prefix and be formatted
 // like `tcp://192.168.0.10:9851` or `unix://socket`.
 // Valid network schemes:
-//  tcp   - bind to both IPv4 and IPv6
-//  tcp4  - IPv4
-//  tcp6  - IPv6
-//  udp   - bind to both IPv4 and IPv6
-//  udp4  - IPv4
-//  udp6  - IPv6
-//  unix  - Unix Domain Socket
+//
+//	tcp   - bind to both IPv4 and IPv6
+//	tcp4  - IPv4
+//	tcp6  - IPv6
+//	udp   - bind to both IPv4 and IPv6
+//	udp4  - IPv4
+//	udp6  - IPv6
+//	unix  - Unix Domain Socket
 //
 // The "tcp" network scheme is assumed when one is not specified.
 func Serve(eventHandler EventHandler, protoAddr string, opts ...Option) (err error) {

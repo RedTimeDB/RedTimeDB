@@ -15,9 +15,9 @@
 package mixedbuffer
 
 import (
-	"github.com/RedTimeDB/RedTimeDB/lib/gnet/pkg/listbuffer"
-	rbPool "github.com/RedTimeDB/RedTimeDB/lib/gnet/pkg/pool/ringbuffer"
-	"github.com/RedTimeDB/RedTimeDB/lib/gnet/pkg/ringbuffer"
+	"github.com/RedEpochDB/RedEpochDB/lib/gnet/pkg/listbuffer"
+	rbPool "github.com/RedEpochDB/RedEpochDB/lib/gnet/pkg/pool/ringbuffer"
+	"github.com/RedEpochDB/RedEpochDB/lib/gnet/pkg/ringbuffer"
 )
 
 // Buffer combines ring-buffer and list-buffer.

@@ -1,4 +1,4 @@
-module github.com/RedTimeDB/RedTimeDB
+module github.com/RedEpochDB/RedEpochDB
 
 go 1.18
 

@@ -21,9 +21,9 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/RedTimeDB/RedTimeDB/lib/gnet/pkg/errors"
-	"github.com/RedTimeDB/RedTimeDB/lib/gnet/pkg/logging"
-	bbPool "github.com/RedTimeDB/RedTimeDB/lib/gnet/pkg/pool/bytebuffer"
+	"github.com/RedEpochDB/RedEpochDB/lib/gnet/pkg/errors"
+	"github.com/RedEpochDB/RedEpochDB/lib/gnet/pkg/logging"
+	bbPool "github.com/RedEpochDB/RedEpochDB/lib/gnet/pkg/pool/bytebuffer"
 )
 
 type eventloop struct {

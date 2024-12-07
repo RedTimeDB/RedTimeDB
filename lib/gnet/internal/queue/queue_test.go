@@ -5,7 +5,7 @@ import (
 	"sync/atomic"
 	"testing"
 
-	"github.com/RedTimeDB/RedTimeDB/lib/gnet/internal/queue"
+	"github.com/RedEpochDB/RedEpochDB/lib/gnet/internal/queue"
 )
 
 func TestLockFreeQueue(t *testing.T) {

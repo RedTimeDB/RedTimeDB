@@ -6,9 +6,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/RedTimeDB/RedTimeDB/lib/gnet"
+	"github.com/RedEpochDB/RedEpochDB/lib/gnet"
 
-	"github.com/RedTimeDB/RedTimeDB/core/redhub/pkg/resp"
+	"github.com/RedEpochDB/RedEpochDB/core/redhub/pkg/resp"
 )
 
 type Action int

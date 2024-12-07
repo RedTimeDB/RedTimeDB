@@ -20,9 +20,9 @@ import (
 	"net"
 	"sync"
 
-	bbPool "github.com/RedTimeDB/RedTimeDB/lib/gnet/pkg/pool/bytebuffer"
-	rbPool "github.com/RedTimeDB/RedTimeDB/lib/gnet/pkg/pool/ringbuffer"
-	"github.com/RedTimeDB/RedTimeDB/lib/gnet/pkg/ringbuffer"
+	bbPool "github.com/RedEpochDB/RedEpochDB/lib/gnet/pkg/pool/bytebuffer"
+	rbPool "github.com/RedEpochDB/RedEpochDB/lib/gnet/pkg/pool/ringbuffer"
+	"github.com/RedEpochDB/RedEpochDB/lib/gnet/pkg/ringbuffer"
 )
 
 type stderr struct {

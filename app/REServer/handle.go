@@ -5,10 +5,10 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/RedTimeDB/RedTimeDB/core/redhub"
-	"github.com/RedTimeDB/RedTimeDB/core/redhub/pkg/resp"
-	"github.com/RedTimeDB/RedTimeDB/lib/numconvert"
-	"github.com/RedTimeDB/RedTimeDB/lib/timeconvert"
+	"github.com/RedEpochDB/RedEpochDB/core/redhub"
+	"github.com/RedEpochDB/RedEpochDB/core/redhub/pkg/resp"
+	"github.com/RedEpochDB/RedEpochDB/lib/numconvert"
+	"github.com/RedEpochDB/RedEpochDB/lib/timeconvert"
 	tstorage "github.com/nakabonne/tstorage"
 )
 
@@ -16,19 +16,19 @@ var mu sync.RWMutex
 
 var items = make(map[string][]byte)
 
-func (rts *RTServer) NewRTSHandle() *redhub.RedHub {
+func (rts *REServer) NewRTSHandle() *redhub.RedHub {
 	return redhub.NewRedHub(rts.onOpened, rts.onClose, rts.handle)
 }
 
-func (rts *RTServer) onOpened(c *redhub.Conn) (out []byte, action redhub.Action) {
+func (rts *REServer) onOpened(c *redhub.Conn) (out []byte, action redhub.Action) {
 	return
 }
 
-func (rts *RTServer) onClose(c *redhub.Conn, err error) (action redhub.Action) {
+func (rts *REServer) onClose(c *redhub.Conn, err error) (action redhub.Action) {
 	return
 }
 
-func (rts *RTServer) handle(cmd resp.Command, out []byte) ([]byte, redhub.Action) {
+func (rts *REServer) handle(cmd resp.Command, out []byte) ([]byte, redhub.Action) {
 	var status redhub.Action
 	switch strings.ToLower(string(cmd.Args[0])) {
 	default:

@@ -1,11 +1,3 @@
-/*
- * @Author: gitsrc
- * @Date: 2022-04-02 11:57:03
- * @LastEditors: gitsrc
- * @LastEditTime: 2022-04-02 13:20:14
- * @FilePath: /RedTimeDB/app/rtserver/rtserverconf/confPKG.go
- */
-
 package confer
 
 import (

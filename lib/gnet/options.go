@@ -17,7 +17,7 @@ package gnet
 import (
 	"time"
 
-	"github.com/RedTimeDB/RedTimeDB/lib/gnet/pkg/logging"
+	"github.com/RedEpochDB/RedEpochDB/lib/gnet/pkg/logging"
 )
 
 // Option is a function that will set up option.

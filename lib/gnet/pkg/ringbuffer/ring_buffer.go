@@ -22,9 +22,9 @@ package ringbuffer
 import (
 	"errors"
 
-	"github.com/RedTimeDB/RedTimeDB/lib/gnet/internal/toolkit"
-	bbPool "github.com/RedTimeDB/RedTimeDB/lib/gnet/pkg/pool/bytebuffer"
-	bsPool "github.com/RedTimeDB/RedTimeDB/lib/gnet/pkg/pool/byteslice"
+	"github.com/RedEpochDB/RedEpochDB/lib/gnet/internal/toolkit"
+	bbPool "github.com/RedEpochDB/RedEpochDB/lib/gnet/pkg/pool/bytebuffer"
+	bsPool "github.com/RedEpochDB/RedEpochDB/lib/gnet/pkg/pool/byteslice"
 )
 
 const (

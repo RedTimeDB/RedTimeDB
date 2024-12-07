@@ -26,9 +26,9 @@ import (
 
 	"golang.org/x/sys/unix"
 
-	"github.com/RedTimeDB/RedTimeDB/lib/gnet/internal/queue"
-	"github.com/RedTimeDB/RedTimeDB/lib/gnet/pkg/errors"
-	"github.com/RedTimeDB/RedTimeDB/lib/gnet/pkg/logging"
+	"github.com/RedEpochDB/RedEpochDB/lib/gnet/internal/queue"
+	"github.com/RedEpochDB/RedEpochDB/lib/gnet/pkg/errors"
+	"github.com/RedEpochDB/RedEpochDB/lib/gnet/pkg/logging"
 )
 
 // Poller represents a poller which is in charge of monitoring file-descriptors.

@@ -1,6 +1,6 @@
-#RTServer YAML config file
+#REServer YAML config file
 
-#RTServer Net Config
+#REServer Net Config
 net:
   #listen_uri: unix:/tmp/redis.sock
   listen_uri: tcp://127.0.0.1:6380
@@ -9,18 +9,18 @@ net:
   lock_os_thread: false
   read_buffer_cap: 0
 
-#RTServer memory cache related parameters
+#REServer memory cache related parameters
 cache:
   enable: false
   max_items_size: 2048 #The maximum number of items stored in the Cache
   default_expiration: 5000 # Cache kv default expiration time (unit: milliseconds)
   cleanup_interval: 120 #Cache memory cleaning cycle (unit: seconds)
 
-#RTServer api config
+#REServer api config
 api:
   http_listen_address:
 
-#RTServer Debug option
+#REServer Debug option
 debug:
   enable: false
   pprof_uri: "127.0.0.1:6060"

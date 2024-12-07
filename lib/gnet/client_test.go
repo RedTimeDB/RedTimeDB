@@ -29,9 +29,9 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/RedTimeDB/RedTimeDB/lib/gnet/pkg/logging"
-	bbPool "github.com/RedTimeDB/RedTimeDB/lib/gnet/pkg/pool/bytebuffer"
-	goPool "github.com/RedTimeDB/RedTimeDB/lib/gnet/pkg/pool/goroutine"
+	"github.com/RedEpochDB/RedEpochDB/lib/gnet/pkg/logging"
+	bbPool "github.com/RedEpochDB/RedEpochDB/lib/gnet/pkg/pool/bytebuffer"
+	goPool "github.com/RedEpochDB/RedEpochDB/lib/gnet/pkg/pool/goroutine"
 )
 
 type clientEvents struct {

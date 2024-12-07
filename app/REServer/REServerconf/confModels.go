@@ -7,10 +7,10 @@ import (
 
 type Confer struct {
 	Mutex sync.RWMutex
-	Opts  RTServerConfS
+	Opts  REServerConfS
 }
 
-type RTServerConfS struct {
+type REServerConfS struct {
 	NetConf   NetConfS   `yaml:"net"`
 	ApiConf   ApiConfS   `yaml:"api"`
 	DebugConf DebugConfS `yaml:"debug"`

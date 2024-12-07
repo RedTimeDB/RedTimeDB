@@ -20,7 +20,7 @@ import (
 	"errors"
 	"fmt"
 
-	gerrors "github.com/RedTimeDB/RedTimeDB/lib/gnet/pkg/errors"
+	gerrors "github.com/RedEpochDB/RedEpochDB/lib/gnet/pkg/errors"
 )
 
 // CRLFByte represents a byte of CRLF.

@@ -21,7 +21,7 @@ package gnet
 import (
 	"runtime"
 
-	"github.com/RedTimeDB/RedTimeDB/lib/gnet/pkg/errors"
+	"github.com/RedEpochDB/RedEpochDB/lib/gnet/pkg/errors"
 )
 
 func (el *eventloop) activateMainReactor(lockOSThread bool) {
