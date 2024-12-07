@@ -1,14 +1,15 @@
 package main
 
 import (
+	"math"
 	"strings"
 	"sync"
 
 	"github.com/RedTimeDB/RedTimeDB/core/redhub"
 	"github.com/RedTimeDB/RedTimeDB/core/redhub/pkg/resp"
-	tstorage "github.com/RedTimeDB/RedTimeDB/core/storage"
 	"github.com/RedTimeDB/RedTimeDB/lib/numconvert"
 	"github.com/RedTimeDB/RedTimeDB/lib/timeconvert"
+	tstorage "github.com/nakabonne/tstorage"
 )
 
 var mu sync.RWMutex
@@ -91,13 +92,35 @@ func (rts *RTServer) handle(cmd resp.Command, out []byte) ([]byte, redhub.Action
 			out = resp.AppendError(out, "ERR wrong number of arguments for '"+string(cmd.Args[0])+"' command")
 			break
 		}
-		sRow, err := rts.MemoryDB.SelectLastOne(string(cmd.Args[1]), nil)
+		start := int64(0) // 你需要根据实际情况设置 start 的值
+		end := math.MaxInt64
+
+		sRow, err := rts.MemoryDB.Select(string(cmd.Args[1]), nil, start, int64(end))
 		if err != nil {
 			out = resp.AppendError(out, "ERR TS.RANGE '"+err.Error()+"'")
 		}
+
+		// Find the data point with the highest timestamp
+		var latestPoint *tstorage.DataPoint
+		for _, point := range sRow {
+			if latestPoint == nil || point.Timestamp > latestPoint.Timestamp {
+				latestPoint = point
+			}
+		}
+
+		// Format the response
+
 		dataMap := make(map[resp.SimpleInt64]float64)
-		dataMap[resp.SimpleInt64(sRow.Timestamp)] = sRow.Value
+		// for _, point := range sRow {
+		// 	dataMap[resp.SimpleInt64(point.Timestamp)] = point.Value
+		// }
+
+		if latestPoint != nil {
+			// Return an array of timestamp and value
+			dataMap[resp.SimpleInt64(latestPoint.Timestamp)] = latestPoint.Value
+		}
 		out = resp.AppendAny(out, dataMap)
+
 	case "ts.range":
 		//Get the last sample.
 		//TS.GET key

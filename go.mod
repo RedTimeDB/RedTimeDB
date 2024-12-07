@@ -3,6 +3,7 @@ module github.com/RedTimeDB/RedTimeDB
 go 1.18
 
 require (
+	github.com/nakabonne/tstorage v0.3.6
 	github.com/panjf2000/ants/v2 v2.10.0
 	github.com/stretchr/testify v1.10.0
 	github.com/valyala/bytebufferpool v1.0.0

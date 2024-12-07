@@ -13,11 +13,11 @@ import (
 
 	confer "github.com/RedTimeDB/RedTimeDB/app/rtserver/rtserverconf"
 	"github.com/RedTimeDB/RedTimeDB/core/redhub"
-	tstorage "github.com/RedTimeDB/RedTimeDB/core/storage"
 	"github.com/RedTimeDB/RedTimeDB/lib/gnet"
+	tstorage "github.com/nakabonne/tstorage"
 )
 
-//RTServer is the core structure of RedTimeServer
+// RTServer is the core structure of RedTimeServer
 type RTServer struct {
 	Confer   confer.Confer
 	Mutex    sync.RWMutex
@@ -25,7 +25,7 @@ type RTServer struct {
 	MemoryDB tstorage.Storage
 }
 
-//GetNewRTServer Used to create the RedTimeServer core structure
+// GetNewRTServer Used to create the RedTimeServer core structure
 func GetNewRTServer(conFileURI string) (rtserver RTServer, err error) {
 	//get confer object
 	rtserver.Confer, err = confer.GetNewConfer(conFileURI)
